@@ -5,6 +5,7 @@ import sys
 from libcitisim import Broker
 import mysql.connector
 from mysql.connector import Error
+import time
 
 NOTIFY_MSG = '''
 New notification:
@@ -57,9 +58,18 @@ class Subscriber:
 
         # Process
         try:
-            request = "INSERT INTO energy (timestamp, source, data) VALUES (" + str(
-                metadata["timestamp"]) + ", '" + str(source) + "', " + str(value) + ");"
-            self.cursor.execute(request)
+            named_tuple = time.localtime()  # get struct_time
+            time_string = time.strftime("%m/%d/%Y, %H:%M:%S", named_tuple)
+            print(time_string)
+            sqlFormula = "INSERT INTO energy(timestamp, source, data, time) VALUES (%s,%s,%s,%s)"
+            val = (str(metadata["timestamp"]),str(source), str(value), str(time_string))
+            '''mycursor.execute(sqlFormula, val)
+            mydb.commit()
+            request = "INSERT INTO energy (timestamp, source, data, time) VALUES (" + str(
+                metadata["timestamp"]) + ", '" + str(source) + "', " + str(value) + ", '" + str(time_string) + ");"
+                '''
+
+            self.cursor.execute(sqlFormula, val)
             self.connection.commit()
             print("Record inserted successfully into table")
         except mysql.connector.Error as error:
