@@ -35,27 +35,30 @@ second_source.append([])
 third_source.append([])
 third_source.append([])
 
-if str(myresult[0][2])[-3] == '1':
+#print(myresult[0][2][-1])
+
+if str(myresult[0][2])[-1] == '1':
     first_source[0].append(0)
     first_source[1].append(myresult[0][3])
-if str(myresult[0][2])[-3] == '2':
+if str(myresult[0][2])[-1] == '2':
     second_source[0].append(0)
     second_source[1].append(myresult[0][3])
-if str(myresult[0][2])[-3] == '3':
+if str(myresult[0][2])[-1] == '3':
     third_source[0].append(0)
     third_source[1].append(myresult[0][3])
 
 #print(first_source)
 
 for i in range(1,len(myresult)):
+    #print(myresult[i])
     #print(str(myresult[i][2])[-3]) # nr sursei
-    if str(myresult[i][2])[-3] == '1':
+    if str(myresult[i][2])[-1] == '1':
         first_source[1].append(myresult[i][3])
         first_source[0].append(myresult[i][1] - myresult[i-1][1])
-    if str(myresult[i][2])[-3] == '2':
+    if str(myresult[i][2])[-1] == '2':
         second_source[1].append(myresult[i][3])
         second_source[0].append(myresult[i][1] - myresult[i - 1][1])
-    if str(myresult[i][2])[-3] == '3':
+    if str(myresult[i][2])[-1] == '3':
         third_source[1].append(myresult[i][3])
         third_source[0].append(myresult[i][1] - myresult[i - 1][1])
 
