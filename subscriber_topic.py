@@ -1,11 +1,17 @@
 #!/usr/bin/python3
 # -*- coding: utf-8; mode: python -*-
 
-import sys
+import sys, os, django
 from libcitisim import Broker
 import mysql.connector
 from mysql.connector import Error
 import time
+
+#sys.path.insert('C:/Users/Tehnic/PycharmProjects/Citisim_Web_Interface')
+sys.path.append('C:/Users/Tehnic/PycharmProjects/Citisim_Web_Interface/RTD')
+
+from models import Energy
+
 
 NOTIFY_MSG = '''
 New notification:
